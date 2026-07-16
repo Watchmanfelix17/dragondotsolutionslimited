@@ -89,13 +89,24 @@ nav a:hover {
 
 /* --- Hero Section --- */
 .hero-section {
-    height: 80vh;
+    height: auto; 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 5%;
-    background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('assets/hero-bg.jpg') center/cover;
+    /* Base padding for mobile */
+    padding: 8rem 5% 4rem; 
+    /* The custom moody gradient inspired by the FB post */
+    background: linear-gradient(135deg, #0a0f14 0%, #172a3a 50%, #1b1225 100%);
+    border-bottom: 2px solid var(--brand-gold);
+}
+
+/* Update the Value-Add section to match the new vibe */
+.value-add-section {
+    background: linear-gradient(135deg, #1b1225 0%, #172a3a 50%, #0a0f14 100%);
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .hero-content {
@@ -219,6 +230,24 @@ footer {
     transform: scale(1.05);
     filter: grayscale(0%); /* Full color on hover */
 }
+/* Add to styles.css to ensure the gallery flexes beautifully based on image count */
+.gallery {
+    display: grid;
+    /* This creates a responsive masonry-style grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.gallery img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
 /* --- Active State Logic (From JS) --- */
 nav a.active-link {
     color: var(--brand-gold);
