@@ -1,326 +1,534 @@
-/* --- Base Variables & Reset --- */
+/* =====================================================================
+   DRAGON DOT SOLUTION LIMITED — styles.css
+   Gold/black brand system for a waterproofing & industrial chemicals
+   manufacturer. Display face: Big Shoulders Display. Body/UI: Archivo.
+   Signature move: an armor-plate texture + angled seam in the hero,
+   nodding to "Dragon" + waterproofing without being literal about it.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Archivo:wght@400;500;600;700;800&display=swap');
+
+/* ---------- Design tokens ---------- */
 :root {
-    --bg-black: #0a0a0a;
-    --surface-black: #1a1a1a;
-    --brand-gold: #D4AF37; /* Strong, premium gold */
-    --text-main: #f5f5f5;
-    --text-muted: #aaaaaa;
+  --black: #0E0D0C;
+  --black-2: #1B1815;
+  --gold: #C8992E;
+  --gold-bright: #E8B93F;
+  --stone: #F4F0E6;
+  --white: #FFFFFF;
+  --ink: #1C1A17;
+  --ink-muted: #6B6459;
+
+  --font-display: 'Big Shoulders Display', sans-serif;
+  --font-body: 'Archivo', sans-serif;
+
+  --container: 1140px;
+  --gutter: max(6vw, calc(50% - (var(--container) / 2)));
+  --radius: 10px;
+  --shadow-sm: 0 2px 8px rgba(14, 13, 12, 0.08);
+  --shadow-md: 0 14px 32px rgba(14, 13, 12, 0.16);
+  --transition: 200ms ease;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
+* { box-sizing: border-box; }
 
 body {
-    background-color: var(--bg-black);
-    color: var(--text-main);
-    line-height: 1.6;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* --- Typography --- */
 h1, h2, h3 {
-    color: var(--brand-gold);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 0.5em;
+  color: var(--black);
 }
 
-h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
 
-h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }
 
-p {
-    margin-bottom: 1rem;
-}
-
-/* --- Header & Navigation --- */
+/* =========================================
+   HEADER & NAVIGATION (DESKTOP) 
+   ========================================= */
 header {
-    background-color: rgba(26, 26, 26, 0.85); /* Slightly transparent surface */
-    backdrop-filter: blur(10px); /* The glass effect */
-    -webkit-backdrop-filter: blur(10px); /* For Safari support */
-    padding: 1rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Softer gold border */
-    transition: all 0.3s ease;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 6vw;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
 }
 
-/* It will trigger this class with JS when the user scrolls */
-header.scrolled {
-    padding: 0.5rem 5%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    background-color: rgba(10, 10, 10, 0.95);
+
+.logo-container img { height: 44px; width: auto; }
+
+.hamburger-menu { 
+  display: none; /* Hidden on Desktop */
+} 
+
+nav.main-nav {
+  display: block;
 }
 
-.logo-container img {
-    height: 50px; /* Adjust based on the actual logo uploaded */
+nav.main-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
+nav.main-nav a {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  padding: 4px 0;
+  color: var(--black);
 }
 
-nav a {
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+nav.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width var(--transition);
 }
 
-nav a:hover {
-    color: var(--brand-gold);
+nav.main-nav a:hover::after { 
+  width: 100%; 
 }
 
-/* --- Hero Section --- */
+/* No working JS toggles this yet, so it stays hidden rather than being a dead click target */
+.hamburger-menu { display: none; }
+
+/* ---------- Hero ---------- */
 .hero-section {
-    height: auto; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    /* Base padding for mobile */
-    padding: 8rem 5% 4rem; 
-    /* The custom moody gradient inspired by the FB post */
-    background: linear-gradient(135deg, #0a0f14 0%, #172a3a 50%, #1b1225 100%);
-    border-bottom: 2px solid var(--brand-gold);
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 6vw 160px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(200, 153, 46, 0.10), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(200, 153, 46, 0.08), transparent 40%),
+    var(--black);
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
+  overflow: hidden;
 }
 
-/* Update the Value-Add section to match the new vibe */
-.value-add-section {
-    background: linear-gradient(135deg, #1b1225 0%, #172a3a 50%, #0a0f14 100%);
-    text-align: center;
-    border-top: 1px solid rgba(212, 175, 55, 0.3);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle at 50% 0%, transparent 62%, rgba(200, 153, 46, 0.14) 63%, rgba(200, 153, 46, 0.14) 66%, transparent 67%),
+    radial-gradient(circle at 50% 0%, transparent 62%, rgba(200, 153, 46, 0.14) 63%, rgba(200, 153, 46, 0.14) 66%, transparent 67%);
+  background-size: 46px 46px, 46px 46px;
+  background-position: 0 0, 23px 23px;
+  pointer-events: none;
 }
 
-.hero-content {
-    max-width: 800px;
+.hero-content { position: relative; max-width: 720px; }
+
+.hero-section h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  color: var(--white);
+  text-transform: uppercase;
 }
 
-/* --- Buttons --- */
-/* Update Button styles */
-.btn-primary, .btn-secondary {
-    border-radius: 4px; /* Slightly rounded corners for modern feel */
-    letter-spacing: 1px;
+.hero-section p {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 520px;
+  margin: 0 auto 2rem;
 }
 
-.btn-primary:hover {
-    background-color: #fff; /* High contrast flash on hover */
-    color: var(--bg-black);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+.btn-primary {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--gold-bright);
+  transform: translateY(-2px);
+}
+
+/* ---------- Shared section heading style ---------- */
+#about h2, #services h2, #shop h2, #portfolio h2, #testimonials h2 {
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+#services h2, #shop h2, #portfolio h2, #testimonials h2 { text-align: center; }
+
+#about h2::after, #services h2::after, #shop h2::after,
+#portfolio h2::after, #testimonials h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: var(--gold);
+  margin-top: 14px;
+}
+
+#services h2::after, #shop h2::after, #portfolio h2::after, #testimonials h2::after {
+  margin-inline: auto;
+}
+
+/* ---------- About ---------- */
+#about {
+  background: var(--stone);
+  padding-block: 90px;
+  padding-inline: var(--gutter);
+}
+
+#about p {
+  max-width: 640px;
+  color: var(--ink-muted);
+  font-size: 1.05rem;
+}
+
+/* ---------- Services ---------- */
+#services {
+  background: var(--white);
+  padding-block: 90px;
+  padding-inline: var(--gutter);
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid rgba(14, 13, 12, 0.08);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+
+.card h3 {
+  font-size: 1.3rem;
+  border-left: 3px solid var(--gold);
+  padding-left: 12px;
+}
+
+.card p { color: var(--ink-muted); }
+
+/* ---------- Shop / products ---------- */
+#shop {
+  background: var(--stone);
+  padding-block: 90px;
+  padding-inline: var(--gutter);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.product {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px 26px 26px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.product:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+
+.badge.in-stock {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--black);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.product h3 { font-size: 1.25rem; margin-top: 8px; }
+.product p { color: var(--ink-muted); }
+
+.price {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin: 14px 0;
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: var(--brand-gold);
-    border: 2px solid var(--brand-gold);
+  display: inline-block;
+  background: transparent;
+  color: var(--black);
+  border: 2px solid var(--black);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 10px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
 }
 
-.btn-secondary:hover {
-    background-color: var(--brand-gold);
-    color: var(--bg-black);
+.btn-secondary:hover,
+.btn-secondary:focus-visible { background: var(--black); color: var(--gold); }
+
+/* ---------- Portfolio ---------- */
+#portfolio {
+  background: var(--white);
+  padding-block: 90px;
+  padding-inline: var(--gutter);
 }
 
-/* --- Layout Sections --- */
-section {
-    padding: 5rem 5%;
+#portfolio p {
+  max-width: 560px;
+  color: var(--ink-muted);
+  margin: 0 auto 40px;
+  text-align: center;
 }
 
-section:nth-child(even) {
-    background-color: var(--surface-black);
-}
-
-/* --- Grids (Services, Products, Portfolio) --- */
-.service-cards, .product-grid, .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-/* Update the Card & Product styles */
-.card, .product {
-    background-color: var(--surface-black); /* Lighter than background to pop */
-    padding: 2.5rem 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle white border */
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.card:hover, .product:hover {
-    transform: translateY(-8px);
-    border-color: var(--brand-gold);
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15); /* Soft gold glow */
-}
-
-.price {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--brand-gold);
-    margin: 1rem 0;
-}
-
-/* --- Footer --- */
-footer {
-    background-color: var(--surface-black);
-    padding: 3rem 5% 1rem;
-    border-top: 2px solid var(--brand-gold);
-    text-align: center;
-}
-
-.footer-info {
-    margin-bottom: 2rem;
-}
-
-/* --- Floating WhatsApp Button --- */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25D366;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    transition: transform 0.3s ease;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-}
-
-.whatsapp-float img {
-    width: 35px;
-    height: 35px;
-}
-
-/* Add this to your gallery section */
-.gallery img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover; /* Ensures images aren't stretched */
-    border-radius: 8px;
-    transition: transform 0.5s ease;
-    filter: grayscale(20%); /* Slightly mutes them to fit the dark theme */
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-    filter: grayscale(0%); /* Full color on hover */
-}
-/* Add to styles.css to ensure the gallery flexes beautifully based on image count */
 .gallery {
-    display: grid;
-    /* This creates a responsive masonry-style grid */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem 0;
+  display: grid;
+  /* This forces exactly 3 equal columns on desktop */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 16px;
 }
 
 .gallery img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition);
 }
 
-/* --- Active State Logic (From JS) --- */
-nav a.active-link {
-    color: var(--brand-gold);
-    border-bottom: 2px solid var(--brand-gold);
-    padding-bottom: 5px;
+.gallery img:hover { transform: scale(1.02); }
+
+/* ---------- Testimonials ---------- */
+#testimonials {
+  background: var(--stone);
+  padding-block: 90px;
+  padding-inline: var(--gutter);
+  text-align: center;
 }
 
-/* --- Base Mobile Styles (Default) --- */
-/* The hamburger menu is visible by default on mobile */
-.hamburger-menu {
+/* ---------- Footer ---------- */
+footer#contact { background: var(--black); color: rgba(255, 255, 255, 0.82); }
+
+.footer-info { padding-block: 70px 100px; padding-inline: var(--gutter); }
+
+.footer-info h3 { color: var(--white); text-transform: uppercase; font-size: 1.6rem; }
+.footer-info p { margin: 10px 0; }
+.footer-info strong { color: var(--gold); }
+
+.social-links a {
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 2px;
+  transition: color var(--transition);
+}
+
+.social-links a:hover,
+.social-links a:focus-visible { color: var(--gold-bright); }
+
+/* ---------- WhatsApp float ---------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 200;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 6px rgba(200, 153, 46, 0.25), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS & SLIDE-OUT NAV
+   ========================================= */
+@media (max-width: 768px) {
+  .hamburger-menu {
     display: block;
     font-size: 2rem;
-    color: var(--brand-gold);
+    color: var(--black);
+    background: none;
+    border: none;
     cursor: pointer;
-    z-index: 200;
-}
+    z-index: 9999;
+    padding: 5px;
+  }
 
-/* Nav is hidden off-screen by default on mobile */
-nav {
+  nav.main-nav {
     position: fixed;
     top: 0;
-    right: -100%; 
-    width: 75%;
+    right: -100%; /* Hides off-screen on mobile */
+    width: 80%;
     height: 100vh;
-    background-color: var(--bg-black);
+    background-color: var(--stone);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: right 0.4s ease;
-    z-index: 150;
+    transition: right 0.4s ease-in-out;
+    box-shadow: -10px 0 30px rgba(14, 13, 12, 0.15);
+    z-index: 800;
+    border-left: 2px solid var(--gold);
+  }
+
+  nav.main-nav.active { 
+    right: 0; /* JS triggers this to slide menu in */
+  }
+
+  nav.main-nav ul { 
+    flex-direction: column; 
+    gap: 2.5rem; 
+    text-align: center; 
+  }
+
+  nav.main-nav a { 
+    font-family: var(--font-display); 
+    font-size: 2rem; 
+    text-transform: uppercase;
+  }
+
+  /* Hero & Grid adjustments */
+  .hero-section {
+    min-height: 70vh;
+    padding: 120px 6vw 120px;
+    clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+  }
+
+ .service-cards, .product-grid, .gallery { grid-template-columns: 1fr; }
 }
 
-nav.active {
-    right: 0; 
+/* ---------- Contact Links ---------- */
+.contact-link {
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  transition: color var(--transition);
 }
 
-nav ul {
-    flex-direction: column;
-    gap: 2.5rem;
+.contact-link:hover,
+.contact-link:focus-visible {
+  color: var(--gold-bright);
+  text-decoration: underline;
 }
 
-/* --- Scale Up for Desktop (Min-Width Media Query) --- */
-@media (min-width: 768px) {
-    /* Hide the mobile hamburger menu */
-    .hamburger-menu {
-        display: none; 
-    }
-
-    /* Reset the navigation to a horizontal desktop row */
-    nav {
-        position: static;
-        width: auto;
-        height: auto;
-        background-color: transparent;
-        display: block;
-    }
-
-    nav ul {
-        flex-direction: row;
-        gap: 2rem;
-    }
+/* ---------- ImpactDev Signature ---------- */
+.copyright {
+  text-align: center;
+  padding-bottom: 30px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
 }
 
-    /* Ensure WhatsApp button doesn't get hidden behind mobile browser UI */
-    .whatsapp-float {
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-    }
-    
-    .whatsapp-float img {
-        width: 30px;
-        height: 30px;
-    }
+.agency-signature {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.sig-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.sig-line {
+  width: 32px;
+  height: 1px;
+  background-color: #334155; /* Exact match to Tailwind bg-slate-700 */
+}
+
+.sig-text {
+  font-size: 0.75rem; 
+  text-transform: uppercase;
+  letter-spacing: 0.1em; 
+  color: #64748b; /* Exact match to Tailwind text-slate-500 */
+}
+
+.sig-brand {
+  font-size: 0.75rem;
+  color: #64748b; 
+  letter-spacing: 0.025em; 
+  margin: 0;
+}
+
+.sig-name {
+  font-family: Georgia, serif; 
+  color: #cbd5e1; /* Exact match to Tailwind text-slate-300 */
+  letter-spacing: normal;
+  margin-left: 4px; 
+}

@@ -19,18 +19,20 @@
     <!-- Header & Navigation -->
     <header>
         <div class="logo-container">
-            <!-- Uploaded Logo will be placed here -->
             <img src="assets/dragon-logo.png" alt="Dragon Dot Solution Limited Logo">
         </div>
-        <div class="hamburger-menu">☰</div>
-        <nav>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger-menu">☰</button>
+        
+        <!-- Navigation -->
+        <nav class="main-nav">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#shop">Shop</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
             </ul>
         </nav>
     </header>
@@ -41,7 +43,7 @@
             <div class="hero-content">
                 <h1>Unmatched Strength for Your Construction Needs</h1>
                 <p>We are leading waterproofing walls and distributors of industrial chemicals.</p>
-                <a href="#contact" class="btn-primary">Get a Quote</a>
+                <a href="https://wa.me/2348130112446?text=Hi%20Solomon%2C%20I%20saw%20your%20website%20and%20need%20expert%20advice%20for%20a%20construction%20project.%20I%20would%20like%20to%20request%20a%20quote.%20Are%20you%20available%20for%20a%20quick%20chat%20about%20my%20requirements%3F" class="btn-primary" target="_blank" rel="noopener noreferrer">GET A QUOTE</a>
             </div>
         </section>
 
@@ -74,23 +76,28 @@
             <div class="product-grid">
                 <article class="product">
                     <div class="badge in-stock">In Stock</div>
+                    <img src="assets/product1.jpg" alt="Dragon Putty Wall Waterproofing Screeding" style="border-radius: 8px; margin-bottom: 16px; width: 100%; aspect-ratio: 4/3; object-fit: cover;">
                     <h3>Dragon Putty</h3>
                     <p>Wall waterproofing screeding putty, just add water.</p>
                     <span class="price">N12,000 per bag</span>
-                    <button class="btn-secondary">Order Now</button>
+                    <!-- Pre-filled message includes a quantity prompt -->
+                    <a href="https://wa.me/2348130112446?text=Hi%2C%20I%20am%20interested%20in%20ordering%20Dragon%20Putty.%20I%20need%20a%20quantity%20of%20___%20bags." class="btn-secondary" target="_blank" rel="noopener noreferrer">Order Now</a>
                 </article>
+
                 <article class="product">
                     <div class="badge in-stock">In Stock</div>
                     <h3>Dragon Paint</h3>
                     <p>Premium quality paint for lasting finishes.</p>
-                    <div class="badge in-stock">In Stock</div>
-                    <button class="btn-secondary">Inquire</button>
+                    <!-- Converted to an active link with quantity prompt -->
+                    <a href="https://wa.me/2348130112446?text=Hi%2C%20I%20want%20to%20inquire%20about%20Dragon%20Paint.%20I%20would%20like%20to%20know%20the%20price%20for%20___%20buckets." class="btn-secondary" target="_blank" rel="noopener noreferrer">Inquire</a>
                 </article>
+
                 <article class="product">
                     <div class="badge in-stock">In Stock</div>
                     <h3>Dragon Acrylic Nail Dissolver</h3>
                     <p>Specialized chemical solution.</p>
-                    <button class="btn-secondary">Inquire</button>
+                    <!-- Converted to an active link with quantity prompt -->
+                    <a href="https://wa.me/2348130112446?text=Hi%2C%20I%20want%20to%20inquire%20about%20the%20Acrylic%20Nail%20Dissolver.%20I%20need%20a%20quantity%20of%20___." class="btn-secondary" target="_blank" rel="noopener noreferrer">Inquire</a>
                 </article>
             </div>
         </section>
@@ -98,11 +105,16 @@
         <!-- Portfolio Section -->
         <section id="portfolio">
             <h2>Our Projects</h2>
-            <p>Explore our latest work in damp proofing and construction.</p>
-            <!-- Gallery Grid for the 10 uploaded images -->
+            <p>Explore our latest work in damp proofing and commercial construction.</p>
+            
             <div class="gallery">
-                <img src="assets/project1.jpg" alt="Waterproofing Project">
-                <!-- Additional 9 image placeholders would go here -->
+                <!-- Update the src filenames to match exactly what you saved in the assets folder -->
+                <img src="assets/portfolio1.jpg" alt="Dragon Dot completed commercial project">
+                <img src="assets/portfolio2.jpg" alt="Waterproofing wall treatment">
+                <img src="assets/portfolio3.jpg" alt="Exterior screeding results">
+                <img src="assets/portfolio4.jpg" alt="Industrial construction site">
+                <img src="assets/portfolio5.jpg" alt="Damp proofing application">
+                <img src="assets/portfolio6.jpg" alt="Finished Dragon Putty project">
             </div>
         </section>
 
@@ -121,11 +133,36 @@
             <br>
             <p><strong>Address:</strong> Mabuishi Ultra Modern Market Cadastral Zone, Block B Shop 045, Abuja, Nigeria</p>
             <p><strong>Hours:</strong> Always Open (24/7)</p>
-            <p><strong>Email:</strong> dragonintegrated@gmail.com / dragonintegrated@yahoo.com</p>
+            
+            <!-- Clickable WhatsApp & Email Links -->
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/2348130112446" class="contact-link" target="_blank" rel="noopener noreferrer">+234 813 011 2446</a></p>
+            <p><strong>Email:</strong> <a href="mailto:dragonintegrated@gmail.com" class="contact-link">dragonintegrated@gmail.com</a></p>
+            
             <div class="social-links">
-                <a href="https://www.facebook.com/share/15zF1GjJFob/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Follow us on Facebook</a>
+                <a href="https://www.facebook.com/share/15zF1GjJFob/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-btn">
+                    <!-- Inline SVG for the Facebook Logo -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                    Follow Dragon Dot on Facebook
+                </a>
             </div>
         </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 Dragon Dot Solution Limited. All rights reserved.</p>
+            
+            <!-- ImpactDev Signature Block -->
+            <div class="agency-signature">
+                <div class="sig-divider">
+                    <span class="sig-line"></span>
+                    <span class="sig-text">Crafted with precision</span>
+                    <span class="sig-line"></span>
+                </div>
+                <p class="sig-brand">
+                    Website by <span class="sig-name">ImpactDev</span>
+                </p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Floating WhatsApp CTA -->
    <a href="https://wa.me/2348130112446?text=How%20can%20I%20know%20much%20about%20your%20product" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
@@ -134,7 +171,6 @@
         </svg>
     </a>
 
-    <script src="script.js"></script>
-
+    <script src="js/main.js"></script>
 </body>
 </html>
